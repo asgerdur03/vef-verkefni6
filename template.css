@@ -1,14 +1,90 @@
-@import './styles/header.scss';
-@import './styles/footer';
-
-
-@import './styles/base';
-@import './styles/config';
-
-
-
-
-
+/* Setjum inn „reset“ sem fjarlægir margin og padding af öllu */
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Reiknum stærð á öllum boxum sem border-box */
+  html {
+    box-sizing: border-box;
+  }
+  /* og látum erfast á allt */
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  /* hjálpar class sem felur sjónrænt en skjálesarar lesa */
+  .sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  
+  /* Stillingar */
+  
+  :root {
+    --font-size-base: 16px;
+    --font-size-headings: 1.5rem;
+  
+    /* Grunn bilið okkar er 1rem == 16px */
+    --spacing: 1rem;
+  
+    /* Bil á milli „stærri“ eininga (header, efnisbox, footer) */
+    --vertical-space: calc(var(--gutter) * 1);
+    --vertical-space-large: calc(var(--gutter) * 1.5);
+  
+    /* Hámarks og lágmarks breidd á efni */
+    --max-width: 1200px;
+    --min-width-image: 200px;
+    --max-width-image: 300px;
+    --max-width-footer-section: 250px;
+  
+    /* Border breiddir */
+    --border-width: 1px;
+    --border-radius-regular: 5px;
+    --border-radius-image: 10px;
+    --border-regular: 1px solid #000; /* todo longhand */
+    --border-with-background: 4px solid #cc99bb;
+  
+    /* Grid stillingar */
+    --columns: 12;
+    --gutter: 30px;
+    --offset: 20px;
+  
+    /* Breidd á efni með offset */
+    --width-offset: calc(100% - (2 * var(--offset)));
+  
+    /* Litir */
+    /** Litir með nafni **/
+    --color-yellow: #f3dd99;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-purple: #eebbdd;
+    --color-purple-dark: #cc99bb;
+  
+    /** Litir með notkun **/
+    --color-background-primary: var(--color-yellow);
+    --color-background-secondary: var(--color-purple);
+    --color-background-form: var(--color-white);
+    --color-border-with-background: var(--color-purple-dark);
+  
+    /* Letur stillingar */
+    --font-base-size: 1rem;
+    --font-family-base: 'Open Sans', Arial, Helvetica, sans-serif;
+    --font-family-heading: 'Matemasie-Regular', 'Comic Sans MS', cursive;
+  
+    /* Transitions */
+    --transition-time-short: 300ms;
+    --transition-time-long: 600ms;
+    --transition-timing-function: ease-in-out;
+  }
+  
   /* Almennt */
   
   /** Letur og stærðir **/
@@ -355,10 +431,67 @@
     margin-top: var(--spacing);
   }
   
-
-
-
-.table-wrapper {
+  /** Fótur **/
+  
+  footer {
+    display: grid;
+    justify-items: center;
+  
+    padding-top: var(--spacing);
+    padding-bottom: var(--spacing);
+    border-top: 4px solid var(--color-border-with-background);
+    width: 100%;
+  
+    background-color: var(--color-background-secondary);
+    text-align: center;
+  }
+  
+  footer > .content {
+    display: grid;
+    justify-content: center;
+    gap: var(--vertical-space);
+  }
+  
+  footer > section {
+    text-align: center;
+  }
+  
+  footer ul {
+    list-style: none;
+  }
+  
+  footer h2 {
+    margin-bottom: var(--spacing);
+  }
+  
+  @media (min-width: 700px) {
+    footer > .content {
+      grid-template-columns: repeat(var(--columns), 1fr);
+      grid-template-rows: auto;
+  
+      width: var(--width-offset);
+      max-width: var(--max-width);
+    }
+  
+    footer .content > section {
+      grid-column: span 4;
+    }
+  }
+  
+  /*** Opnunartími ***/
+  
+  dt {
+    font-weight: bold;
+  }
+  
+  dd {
+    margin-bottom: var(--spacing);
+  }
+  
+  /** Spilasíða, töflustílar **/
+  
+  /* Leyfir skroll á töflu ef pláss er ekki nóg til að birta hana alla lárétt */
+  .table-wrapper {
     overflow-x: auto;
   }
   
