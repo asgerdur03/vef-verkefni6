@@ -1,14 +1,9 @@
- 
-  main {
-    width: 100%;
-  }
-  
-  /**
-   * notum þetta til að fá bil á milli eininga _almennt_
-   * en ekki að hver eining þurfi að huga að bili
-   */
-  main > .content {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--spacing) * 2);
-  }
+main {
+  width: 100%;
+}
+
+main>.content {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 2);
+}
